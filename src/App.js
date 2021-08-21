@@ -1,25 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import Card from './components/Card/Card';
 
 function App() {
+  const [pokeData, setPokeData] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const fetchPokemon = () => {
+    fetch('https://pokeapi.co/api/v2/pokemon?offset=0&limit=898')
+    .then((response) => response.json())
+    .then((data) => {
+      setPokeData(data);
+      // console.table(pokeData.results)
+    });
+  };
+  useEffect(() => {
+    fetchPokemon();
+  }, [])
+
+  let num = 0;
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <div className="App">
+    <header className="App__header"></header>
+    <div className="App__grid">
+    {pokeData&&pokeData.results.map((pokemon) => {
+    num = num + 1
+      return (
+          <Card name={pokemon.name} num={num} key={pokemon.name}/>
+          // <div>
+          //   <p>{pokemon.name}</p>
+          //   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`} alt="" />
+          // </div>
+          )})}
+          </div>
+  </div>
+  )
 }
 
 export default App;

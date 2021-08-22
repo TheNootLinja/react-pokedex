@@ -1,6 +1,7 @@
 .card {
-  background-color: hsl(0, 0%, 80%);
+  background-color: hsl(0, 0%, 81%);
   width: 95%;
-  margin: 5px auto;
+  margin: 7px auto;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

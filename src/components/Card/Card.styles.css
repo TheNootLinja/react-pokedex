@@ -4,4 +4,12 @@
   margin: 7px auto;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: hidden;
+}
+
+.card__name {
+  line-height: 25px;
+  background-color: hsl(0, 0%, 60%);
+  height: 25px;
+  margin: 0;
 }

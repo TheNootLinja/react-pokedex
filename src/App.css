@@ -18,6 +18,8 @@
   background-color: rgb(255, 65, 65);
   height: 50px;
   width: 100%;
+  text-align: center;
+  line-height: 50px;
 }
 
 .App-link {

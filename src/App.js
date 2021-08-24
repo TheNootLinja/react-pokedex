@@ -4,11 +4,21 @@ import Card from './components/Card/Card';
 
 function App() {
   const [pokeData, setPokeData] = useState(null);
+  const [indivPokeData, setIndivPokeData] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleClick = (name) => {
     setSearchTerm(name);
-    console.log(searchTerm);
+    fetchIndividualPokemon();
+    console.log(indivPokeData);
+  }
+
+  const fetchIndividualPokemon = () => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`)
+    .then((response) => response.json())
+    .then((indivData) => {
+      setIndivPokeData(indivData)
+    })
   }
 
   const fetchPokemon = () => {
@@ -28,7 +38,7 @@ function App() {
 
   return (
   <div className="App">
-    <header className="App__header"></header>
+    <header className="App__header">{`https://pokeapi.co/api/v2/pokemon/${searchTerm}`}</header>
     <div className="App__grid">
     {pokeData&&pokeData.results.map((pokemon) => {
     num = num + 1

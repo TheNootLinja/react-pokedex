@@ -6,18 +6,25 @@ function App() {
   const [pokeData, setPokeData] = useState(null);
   const [indivPokeData, setIndivPokeData] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleClick = (name) => {
     setSearchTerm(name);
-    fetchIndividualPokemon();
-    console.log(indivPokeData);
+    fetchIndividualPokemon(name);
+    setModalOpen(true);
   }
 
-  const fetchIndividualPokemon = () => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${searchTerm}`)
+  const handleCloseClick = () => {
+    setModalOpen(false);
+    setIndivPokeData(null);
+  }
+
+  const fetchIndividualPokemon = (name) => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     .then((response) => response.json())
     .then((indivData) => {
-      setIndivPokeData(indivData)
+      setIndivPokeData(indivData);
+      console.log(indivData)
     })
   }
 
@@ -26,7 +33,6 @@ function App() {
     .then((response) => response.json())
     .then((data) => {
       setPokeData(data);
-      // console.table(pokeData.results)
     });
   };
   useEffect(() => {
@@ -44,12 +50,17 @@ function App() {
     num = num + 1
       return (
           <Card clickFunc={handleClick} name={pokemon.name} num={num} key={pokemon.name}/>
-          // <div>
-          //   <p>{pokemon.name}</p>
-          //   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`} alt="" />
-          // </div>
           )})}
           </div>
+          {modalOpen&&indivPokeData&&<modal>
+            <div className="App__modalbg">
+              <div className="App__modal">
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${indivPokeData.id}.png`} alt="" />
+                <h2>{indivPokeData.forms[0].name}</h2>
+                <button onClick={handleCloseClick}>Close</button>
+              </div>
+            </div>
+          </modal>}
   </div>
   )
 }

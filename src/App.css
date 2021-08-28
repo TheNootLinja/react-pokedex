@@ -22,15 +22,19 @@
   line-height: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.App__modalbg {
+  background-color: rgba(129, 129, 129, 0.5);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App__modal {
+  background-color: red;
+  margin: auto;
+  vertical-align: middle;
+  width: 90%;
+  height: 90%;
 }

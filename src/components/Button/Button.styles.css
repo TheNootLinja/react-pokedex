@@ -1,0 +1,17 @@
+.Button {
+  font-size: 2rem;
+  line-height: 50px;
+  color: white;
+  font-weight: 600;
+  position: absolute;
+  bottom: 5px;
+  left: 25%;
+  height: 50px;
+  width: 50%;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 109, 109);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'Acme', sans-serif;
+}
